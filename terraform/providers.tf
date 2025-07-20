@@ -6,18 +6,13 @@ terraform {
     }
   }
 
-  terraform { 
-  cloud { 
-    
-    organization = "felfun-spz-technologies-azure-platform" 
+  cloud {
+    organization = "felfun-spz-technologies-azure-platform"
 
-    workspaces { 
-      name = "azure-policy-region-restriction" 
-    } 
-  } 
-}
- 
- 
+    workspaces {
+      name = "azure-policy-region-restriction"
+    }
+  }
 }
 
 provider "azurerm" {
