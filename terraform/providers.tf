@@ -6,13 +6,18 @@ terraform {
     }
   }
 
-  backend "remote" {
-    organization = "felfun-spz-technologies-azure-platform"
+  terraform { 
+  cloud { 
+    
+    organization = "felfun-spz-technologies-azure-platform" 
 
-    workspaces {
-      name = "azure-policy-enforcer"
-    }
-  }
+    workspaces { 
+      name = "azure-policy-region-restriction" 
+    } 
+  } 
+}
+ 
+ 
 }
 
 provider "azurerm" {
