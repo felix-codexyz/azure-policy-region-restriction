@@ -1,5 +1,5 @@
 # Get current Azure context (subscription info)
-# Test deployment workflow - this is a test comment
+
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_policy_definition" "allow_only_eastus" {
