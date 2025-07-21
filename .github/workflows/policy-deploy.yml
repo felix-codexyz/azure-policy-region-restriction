@@ -5,11 +5,6 @@ on:
   pull_request:
     branches:
       - main
-  
-  # Trigger on merge to main for deployment
-  push:
-    branches:
-      - main
 
 jobs:
   # Validation job for pull requests
@@ -38,47 +33,3 @@ jobs:
       - name: Terraform Plan
         working-directory: terraform
         run: terraform plan -input=false
-
-  # Deployment job for merged PRs
-  deploy:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.6
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-      - name: Terraform Init
-        working-directory: terraform
-        run: terraform init
-
-      - name: Terraform Validate
-        working-directory: terraform
-        run: terraform validate
-
-      - name: Terraform Plan
-        working-directory: terraform
-        run: terraform plan -input=false
-
-      - name: Terraform Apply
-        working-directory: terraform
-        run: terraform apply -auto-approve -input=false
-        env:
-          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-
-      - name: Deployment Success Notification
-        if: success()
-        run: |
-          echo "✅ Azure Policy successfully deployed!"
-          echo "Policy: Allow Only East US Region"
-          echo "Scope: Azure Subscription"
-          echo "Triggered by: Merge to main branch"
