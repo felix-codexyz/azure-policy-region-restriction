@@ -1,18 +1,9 @@
 {
-  "properties": {
-    "displayName": "Allow Only East US Region",
-    "policyType": "Custom",
-    "mode": "All",
-    "description": "This policy allows resource creation only in East US.",
-    "parameters": {},
-    "policyRule": {
-      "if": {
-        "field": "location",
-        "notEquals": "eastus"
-      },
-      "then": {
-        "effect": "deny"
-      }
-    }
+  "if": {
+    "field": "location",
+    "notEquals": "eastus"
+  },
+  "then": {
+    "effect": "deny"
   }
 }
