@@ -292,7 +292,7 @@ jobs:
 
 ## Testing the Implementation
 
-### Test Scenario 1: Policy Creation Validation
+### Test Scenario 1: Policy Creation Validation:
 
 1. **Create feature branch**:
    ```bash
