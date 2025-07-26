@@ -1,4 +1,4 @@
-# Azure Policy as Code - Phase 1 Implementation:
+# Azure Policy as Code - Phase 1 Implementation
 
 ## Project Overview
 
